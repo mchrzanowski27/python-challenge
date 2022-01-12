@@ -1,6 +1,7 @@
 import os
 import csv
 
+# paths
 budget_csv = os.path.join("PyBank", "Resources", "budget_data.csv")
 output_file = os.path.join("PyBank", "Analysis", "financial-analysis.txt")
 
@@ -8,6 +9,7 @@ output_file = os.path.join("PyBank", "Analysis", "financial-analysis.txt")
 months = []
 profit_loss = []
 
+# open csv file
 with open(budget_csv) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_header = next(csvreader)
@@ -22,6 +24,7 @@ with open(budget_csv) as csvfile:
 
     average_change = (profit_loss[85] - profit_loss[0])/(total_months-1)
 
+    # finding greatest increase/decrease
     profit_change = []
     for i in range (1, len(profit_loss)):
         profit_change.append(profit_loss[i]-profit_loss[i-1])
@@ -47,6 +50,7 @@ Result_summary = ["Financial Analysis\n",
 # Print results
 print(*Result_summary, sep="")
 
+#write text file for results
 with open(output_file, "w") as Analysis:
     Analysis.writelines(Result_summary)
 
